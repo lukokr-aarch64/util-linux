@@ -1,0 +1,11 @@
+# Enable `bzlmod`
+common --enable_bzlmod
+
+# `bzlmod` pre-release registries
+common --registry https://bcr.bazel.build
+
+# Output as much information in the CI log about failures as possible
+build --verbose_failures
+
+# User-specific .bazelrc
+try-import %workspace%/.bazelrc.user

@@ -205,3 +205,10 @@ ylwrap
 /zramctl
 /lsclocks
 /lastlog2
+
+# Bazel
+/bazel-*
+MODULE.bazel.lock
+
+# Don't ignore generated platform configs for Bazel build
+!config/*/config.h

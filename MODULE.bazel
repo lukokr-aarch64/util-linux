@@ -1,0 +1,6 @@
+module(
+    name = "util-linux",
+    bazel_compatibility = [
+        ">=7.0.0",
+    ],
+)
