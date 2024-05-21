@@ -1,0 +1,31 @@
+load("@bazel_skylib//rules:expand_template.bzl", "expand_template")
+
+expand_template(
+    name = "generate_header",
+    out = "blkid.h",
+    substitutions = {
+        "@LIBBLKID_VERSION@": "2.40.1",
+        "@LIBBLKID_DATE@": "__REDACTED__",
+    },
+    template = "src/blkid.h.in",
+)
+
+cc_library(
+    name = "headers",
+    hdrs = [":generate_header"],
+    includes = ["."],
+)
+
+cc_library(
+    name = "libblkid",
+    srcs = glob([
+        "src/*.c",
+        "src/*.h",
+    ]),
+    visibility = ["//visibility:public"],
+    deps = [
+        ":headers",
+        "//:includes",
+        "//config",
+    ],
+)
