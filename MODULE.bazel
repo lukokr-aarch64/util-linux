@@ -4,3 +4,5 @@ module(
         ">=7.0.0",
     ],
 )
+
+bazel_dep(name = "sqlite3", version = "3.42.0.bcr.1")

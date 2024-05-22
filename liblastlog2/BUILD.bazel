@@ -1,0 +1,19 @@
+load("@bazel_skylib//rules:expand_template.bzl", "expand_template")
+
+cc_library(
+    name = "liblastlog2",
+    srcs = [
+        "src/lastlog2.c",
+        "src/lastlog2P.h",
+    ],
+    hdrs = [
+        "src/lastlog2.h",
+    ],
+    includes = ["srcs"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//:includes",
+        "//config",
+        "@sqlite3",
+    ],
+)
