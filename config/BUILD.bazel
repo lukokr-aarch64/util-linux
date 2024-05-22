@@ -217,6 +217,7 @@ cc_library(
                 "_PATH_LOCALSTATEDIR=\\\"/var\\\"",
                 "CONFIG_ADJTIME_PATH=\\\"/etc/adjtime\\\"",
                 "ADJTIME_PATH=\\\"/etc/adjtime\\\"",
+                "PACKAGE_STRING=\\\"util-linux-2.40.1\\\"",
             ],
         },
         no_match_error = "Unsupported architecture.",

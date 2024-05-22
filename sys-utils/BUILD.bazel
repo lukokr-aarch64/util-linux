@@ -1,0 +1,12 @@
+cc_binary(
+    name = "unshare",
+    srcs = [
+        "unshare.c",
+        "//lib:exec_shell_c",
+    ],
+    deps = [
+        "//config",
+        "//lib:common",
+        "//libmount",
+    ],
+)
