@@ -6,3 +6,5 @@ module(
 )
 
 bazel_dep(name = "sqlite3", version = "3.42.0.bcr.1")
+bazel_dep(name = "rules_bison", version = "0.2.2")
+bazel_dep(name = "rules_flex", version = "0.2.1")

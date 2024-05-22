@@ -1,0 +1,62 @@
+load("@bazel_skylib//rules:expand_template.bzl", "expand_template")
+load("//:version.bzl", "VERSION")
+load("@rules_flex//flex:flex.bzl", "flex")
+load("@rules_bison//bison:bison.bzl", "bison", "bison_cc_library")
+
+expand_template(
+    name = "generate_header",
+    out = "libsmartcols.h",
+    substitutions = {
+        "@LIBSMARTCOLS_VERSION@": VERSION,
+    },
+    template = "src/libsmartcols.h.in",
+)
+
+cc_library(
+    name = "headers",
+    hdrs = [":generate_header"],
+    includes = ["."],
+)
+
+flex(
+    name = "filter-scanner",
+    src = "src/filter-scanner.l",
+)
+
+
+bison(
+	name = "filter-parser",
+	src = "src/filter-parser.y",
+)
+
+cc_library(
+    name = "libsmartcols",
+    srcs = [
+	"src/smartcolsP.h",
+	"src/iter.c",
+	"src/symbols.c",
+	"src/cell.c",
+	"src/column.c",
+	"src/line.c",
+	"src/table.c",
+	"src/print.c",
+	"src/print-api.c",
+	"src/version.c",
+	"src/calculate.c",
+	"src/grouping.c",
+	"src/walk.c",
+	"src/init.c",
+	"src/filter.c",
+	"src/filter-param.c",
+	"src/filter-expr.c",
+	":filter-scanner",
+	":filter-parser",
+    ],
+    includes = ["src"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":headers",
+        "//:includes",
+        "//config",
+    ],
+)

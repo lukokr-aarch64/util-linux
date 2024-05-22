@@ -1,0 +1,16 @@
+cc_library(
+    name = "includes",
+    hdrs = glob(["include/*.h"]),
+    includes = ["include"],
+    visibility = ["//visibility:public"],
+    deps = ["//config"],
+)
+
+
+# cc_library(
+#     name = "list",
+#     hdrs = ["include/list.h"],
+#     includes = ["include"],
+#     visibility = ["//visibility:public"],
+#     deps = ["//includes"],
+# )
