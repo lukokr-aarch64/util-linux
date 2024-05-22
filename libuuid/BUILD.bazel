@@ -1,0 +1,47 @@
+package(
+    default_visibility = ["//:__subpackages__"],
+)
+
+filegroup(
+    name = "predefined_c",
+    srcs = ["src/predefined.c"],
+)
+
+filegroup(
+    name = "unpack_c",
+    srcs = ["src/unpack.c"],
+)
+
+filegroup(
+    name = "unparse_c",
+    srcs = ["src/unparse.c"],
+)
+
+cc_library(
+    name = "libuuid",
+    srcs = [
+        "src/clear.c",
+        "src/compare.c",
+        "src/copy.c",
+        "src/gen_uuid.c",
+        "src/isnull.c",
+        "src/pack.c",
+        "src/parse.c",
+        "src/uuidP.h",
+        "src/uuid_time.c",
+        "src/uuidd.h",
+        ":predefined_c",
+        ":unpack_c",
+        ":unparse_c",
+        # TODO:
+        "//lib:randutils_c",
+        "//lib:md5_c",
+        "//lib:sha1_c",
+    ],
+    hdrs = ["src/uuid.h"],
+    includes = ["src"],
+    deps = [
+        "//:includes",
+        "//config",
+    ],
+)
