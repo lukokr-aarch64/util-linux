@@ -1,0 +1,55 @@
+load("@bazel_skylib//rules:expand_template.bzl", "expand_template")
+
+expand_template(
+    name = "generate_header",
+    out = "libfdisk.h",
+    substitutions = {
+        "@LIBFDISK_VERSION@": "2.40.1",
+        "@LIBFDISK_MAJOR_VERSION@": "2",
+        "@LIBFDISK_MINOR_VERSION@": "40",
+        "@LIBFDISK_PATCH_VERSION@": "1",
+    },
+    template = "src/libfdisk.h.in",
+)
+
+cc_library(
+    name = "headers",
+    hdrs = [":generate_header"],
+    includes = ["."],
+)
+
+cc_library(
+    name = "libfdisk",
+    srcs = [
+        "src/alignment.c",
+        "src/ask.c",
+        "src/bsd.c",
+        "src/context.c",
+        "src/dos.c",
+        "src/fdiskP.h",
+        "src/field.c",
+        "src/gpt.c",
+        "src/init.c",
+        "src/item.c",
+        "src/iter.c",
+        "src/label.c",
+        "src/partition.c",
+        "src/parttype.c",
+        "src/script.c",
+        "src/sgi.c",
+        "src/sun.c",
+        "src/table.c",
+        "src/test.c",
+        "src/utils.c",
+        "src/version.c",
+        "src/wipe.c",
+    ],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":headers",
+        "//:includes",
+        "//config",
+        "//libblkid",
+        "//libuuid",
+    ],
+)
