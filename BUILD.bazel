@@ -1,11 +1,21 @@
+package(
+    default_visibility = ["//:__subpackages__"],
+)
+
+filegroup(
+    name = "colors_h",
+    srcs = [
+        "include/color-names.h",
+        "include/colors.h",
+    ],
+)
+
 cc_library(
     name = "includes",
     hdrs = glob(["include/*.h"]),
     includes = ["include"],
-    visibility = ["//visibility:public"],
     deps = ["//config"],
 )
-
 
 # cc_library(
 #     name = "list",

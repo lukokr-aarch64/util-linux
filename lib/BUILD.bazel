@@ -126,3 +126,16 @@ cc_library(
            ),
     deps = ["//:includes"],
 )
+
+cc_library(
+    name = "tcolors",
+    srcs = [
+        "color-names.c",
+        "colors.c",
+    ],
+    hdrs = ["//:colors_h"],
+    deps = [
+        "//:includes",
+        "@ncurses",
+    ],
+)
