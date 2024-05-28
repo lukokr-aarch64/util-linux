@@ -1,3 +1,516 @@
+load("@rules_bison//bison:bison.bzl", "bison", "bison_cc_library")
+
+bison(
+    name = "hwclock-parse-date",
+    src = "hwclock-parse-date.y",
+)
+
+cc_binary(
+    name = "lsmem",
+    srcs = [
+        "lsmem.c",
+    ],
+    deps = [
+        "//config",
+        "//lib:common",
+        "//libsmartcols",
+    ],
+)
+
+cc_binary(
+    name = "chmem",
+    srcs = [
+        "chmem.c",
+    ],
+    deps = [
+        "//config",
+        "//lib:common",
+    ],
+)
+
+cc_binary(
+    name = "choom",
+    srcs = [
+        "choom.c",
+    ],
+    deps = [
+        "//:includes",
+        "//config",
+        "//lib:common",
+    ],
+)
+
+cc_binary(
+    name = "ipcmk",
+    srcs = [
+        "ipcmk.c",
+    ],
+    deps = [
+        "//:includes",
+        "//config",
+        "//lib:common",
+    ],
+)
+
+cc_binary(
+    name = "ipcrm",
+    srcs = [
+        "ipcrm.c",
+    ],
+    deps = [
+        "//:includes",
+        "//config",
+        "//lib:common",
+    ],
+)
+
+cc_binary(
+    name = "ipcs",
+    srcs = [
+        "ipcs.c",
+        "ipcutils.c",
+        "ipcutils.h",
+    ],
+    deps = [
+        "//:includes",
+        "//config",
+        "//lib:common",
+    ],
+)
+
+cc_binary(
+    name = "rfkill",
+    srcs = [
+        "rfkill.c",
+    ],
+    deps = [
+        "//:includes",
+        "//config",
+        "//lib:common",
+        "//libsmartcols",
+    ],
+)
+
+cc_binary(
+    name = "renice",
+    srcs = [
+        "renice.c",
+    ],
+    deps = [
+        "//:includes",
+        "//config",
+        "//lib:common",
+        "//libsmartcols",
+    ],
+)
+
+cc_binary(
+    name = "setpgid",
+    srcs = [
+        "setpgid.c",
+    ],
+    deps = [
+        "//:includes",
+        "//config",
+        "//lib:common",
+        "//libsmartcols",
+    ],
+)
+
+cc_binary(
+    name = "setsid",
+    srcs = [
+        "setsid.c",
+    ],
+    deps = [
+        "//:includes",
+        "//config",
+        "//lib:common",
+        "//libsmartcols",
+    ],
+)
+
+cc_binary(
+    name = "readprofile",
+    srcs = [
+        "readprofile.c",
+    ],
+    deps = [
+        "//:includes",
+        "//config",
+        "//lib:common",
+        "//libsmartcols",
+    ],
+)
+
+cc_binary(
+    name = "tunelp",
+    srcs = [
+        "tunelp.c",
+    ],
+    deps = [
+        "//:includes",
+        "//config",
+        "//lib:common",
+    ],
+)
+
+# TODO: debug link fails
+# cc_binary(
+#     name = "fstrim",
+#     srcs = [
+#         "fstrim.c",
+#     ],
+#     deps = [
+#         "//:includes",
+#         "//config",
+#         "//lib:common",
+#         "//libmount",
+#     ],
+# )
+
+cc_binary(
+    name = "dmesg",
+    srcs = [
+        "dmesg.c",
+        "//lib:monotonic_c",
+        "//lib:pager_c",
+    ],
+    deps = [
+        "//:includes",
+        "//config",
+        "//lib:common",
+        "//lib:tcolors",
+    ],
+)
+
+cc_binary(
+    name = "ctrlaltdel",
+    srcs = [
+        "ctrlaltdel.c",
+    ],
+    deps = [
+        "//:includes",
+        "//config",
+        "//lib:common",
+    ],
+)
+
+cc_binary(
+    name = "fsfreeze",
+    srcs = [
+        "fsfreeze.c",
+    ],
+    deps = [
+        "//:includes",
+        "//config",
+    ],
+)
+
+# TODO: debug unknown symbol strtosize_or_err
+# cc_binary(
+#     name = "blkdiscard",
+#     srcs = [
+#         "blkdiscard.c",
+#         "//lib:monotonic_c",
+#     ],
+#     deps = [
+#         "//:includes",
+#         "//config",
+#         "//libblkid",
+#     ],
+# )
+
+cc_binary(
+    name = "blkzone",
+    srcs = [
+        "blkzone.c",
+    ],
+    deps = [
+        "//:includes",
+        "//config",
+        "//lib:common",
+    ],
+)
+
+cc_binary(
+    name = "blkpr",
+    srcs = [
+        "blkpr.c",
+    ],
+    deps = [
+        "//:includes",
+        "//config",
+        "//lib:common",
+    ],
+)
+
+cc_binary(
+    name = "ldattach",
+    srcs = [
+        "ldattach.c",
+    ],
+    deps = [
+        "//:includes",
+        "//config",
+        "//lib:common",
+    ],
+)
+
+cc_binary(
+    name = "rtcwake",
+    srcs = [
+        "rtcwake.c",
+    ],
+    deps = [
+        "//:includes",
+        "//config",
+        "//lib:common",
+    ],
+)
+
+cc_binary(
+    name = "setarch",
+    srcs = [
+        "setarch.c",
+    ],
+    deps = [
+        "//:includes",
+        "//config",
+        "//lib:common",
+    ],
+)
+
+# TODO: error linking blkid_probe_reset_superblocks_filter
+# cc_binary(
+#     name = "eject",
+#     srcs = [
+#         "eject.c",
+#     ],
+#     deps = [
+#         "//:includes",
+#         "//config",
+#         "//lib:common",
+#         "//libmount",
+#     ],
+# )
+
+cc_binary(
+    name = "losetup",
+    srcs = [
+        "losetup.c",
+    ],
+    deps = [
+        "//:includes",
+        "//config",
+        "//lib:common",
+        "//libsmartcols",
+    ],
+)
+
+cc_binary(
+    name = "zramctl",
+    srcs = [
+        "zramctl.c",
+        "//lib:ismounted_c",
+    ],
+    deps = [
+        "//:includes",
+        "//config",
+        "//lib:common",
+        "//libsmartcols",
+    ],
+)
+
+# TODO: error: conflicting types for 'prlimit'
+# cc_binary(
+#     name = "prlimit",
+#     srcs = [
+#         "prlimit.c",
+#     ],
+#     deps = [
+#         "//:includes",
+#         "//config",
+#         "//lib:common",
+#         "//libsmartcols",
+#     ],
+# )
+
+# TODO: link issue partitions_drv
+# cc_binary(
+#     name = "lsns",
+#     srcs = [
+#         "lsns.c",
+#     ],
+#     deps = [
+#         "//:includes",
+#         "//config",
+#         "//lib:common",
+#         "//libmount",
+#         "//libsmartcols",
+#     ],
+# )
+
+# TODO: debug blkid_probe_reset_superblocks_filter
+# cc_binary(
+#     name = "mount",
+#     srcs = [
+#         "mount.c",
+#     ],
+#     deps = [
+#         "//:includes",
+#         "//config",
+#         "//lib:common",
+#         "//libmount",
+#         "//libsmartcols",
+#     ],
+# )
+
+# TODO: debug blkid_probe_reset_superblocks_filter
+# cc_binary(
+#     name = "umount",
+#     srcs = [
+#         "umount.c",
+#     ],
+#     deps = [
+#         "//:includes",
+#         "//config",
+#         "//lib:common",
+#         "//libmount",
+#         "//libsmartcols",
+#     ],
+# )
+
+# TODO: error: undefined symbol: blkid_probe_reset_superblocks_filter
+# cc_binary(
+#     name = "swapon",
+#     srcs = [
+#         "swapon.c",
+#         "swapon-common.c",
+#         "swapon-common.h",
+#         "//lib:swapprober_c",
+#     ],
+#     deps = [
+#         "//:includes",
+#         "//config",
+#         "//lib:common",
+#         "//libblkid",
+#         "//libmount",
+#         "//libsmartcols",
+#     ],
+# )
+
+# TODO: error: undefined symbol: blkid_probe_reset_superblocks_filter
+# cc_binary(
+#     name = "swapoff",
+#     srcs = [
+#         "swapoff.c",
+#         "swapon-common.c",
+#         "swapon-common.h",
+#         "//lib:swapprober_c",
+#     ],
+#     deps = [
+#         "//:includes",
+#         "//config",
+#         "//lib:common",
+#         "//libblkid",
+#         "//libmount",
+#         "//libsmartcols",
+#     ],
+# )
+
+cc_binary(
+    name = "lscpu",
+    srcs = [
+        "lscpu.c",
+        "lscpu.h",
+        "lscpu-arm.c",
+        "lscpu-cpu.c",
+        "lscpu-cputype.c",
+        "lscpu-dmi.c",
+        "lscpu-topology.c",
+        "lscpu-virt.c",
+    ],
+    deps = [
+        "//:includes",
+        "//config",
+        "//lib:common",
+        "//libsmartcols",
+    ],
+)
+
+cc_binary(
+    name = "chcpu",
+    srcs = [
+        "chcpu.c",
+    ],
+    deps = [
+        "//:includes",
+        "//config",
+        "//lib:common",
+    ],
+)
+
+cc_binary(
+    name = "wdctl",
+    srcs = [
+        "wdctl.c",
+    ],
+    deps = [
+        "//:includes",
+        "//config",
+        "//lib:common",
+        "//libsmartcols",
+    ],
+)
+
+# TODO: error: undefined symbol: blkid_probe_reset_superblocks_filter
+# cc_binary(
+#     name = "mountpoint",
+#     srcs = [
+#         "mountpoint.c",
+#     ],
+#     deps = [
+#         "//:includes",
+#         "//config",
+#         "//lib:common",
+#         "//libmount",
+#         "//libsmartcols",
+#     ],
+# )
+
+cc_binary(
+    name = "fallocate",
+    srcs = [
+        "fallocate.c",
+    ],
+    deps = [
+        "//:includes",
+        "//config",
+        "//lib:common",
+    ],
+)
+
+cc_binary(
+    name = "pivot_root",
+    srcs = [
+        "pivot_root.c",
+    ],
+    deps = [
+        "//:includes",
+    ],
+)
+
+cc_binary(
+    name = "switch_root",
+    srcs = [
+        "switch_root.c",
+    ],
+    deps = [
+        "//:includes",
+    ],
+)
+
 cc_binary(
     name = "unshare",
     srcs = [
@@ -10,3 +523,98 @@ cc_binary(
         "//libmount",
     ],
 )
+
+cc_binary(
+    name = "nsenter",
+    srcs = [
+        "nsenter.c",
+        "//lib:exec_shell_c",
+    ],
+    deps = [
+        "//config",
+        "//lib:common",
+    ],
+)
+
+# TODO: needs lib_cap_ng
+# cc_binary(
+#     name = "setpriv",
+#     srcs = [
+#         "setpriv.c",
+#         # TODO: add detection for 'setpriv-landlock.c'
+#     ],
+#     deps = [
+#         "//config",
+#     ],
+# )
+
+cc_binary(
+    name = "flock",
+    srcs = [
+        "flock.c",
+        "//lib:monotonic_c",
+        "//lib:timer_c",
+    ],
+    deps = [
+        "//config",
+        "//lib:common",
+    ],
+)
+
+cc_binary(
+    name = "lsipc",
+    srcs = [
+        "ipcutils.c",
+        "ipcutils.h",
+        "lsipc.c",
+    ],
+    deps = [
+        "//config",
+        "//lib:common",
+        "//libsmartcols",
+    ],
+)
+
+cc_binary(
+    name = "lsirq",
+    srcs = [
+        "irq-common.c",
+        "irq-common.h",
+        "lsirq.c",
+    ],
+    deps = [
+        "//config",
+        "//lib:common",
+        "//libsmartcols",
+    ],
+)
+
+cc_binary(
+    name = "irqtop",
+    srcs = [
+        "irq-common.c",
+        "irq-common.h",
+        "irqtop.c",
+        "//lib:monotonic_c",
+    ],
+    deps = [
+        "//config",
+        "//lib:common",
+        "//libsmartcols",
+        "@ncurses",
+    ],
+)
+
+# TODO: needs lib_m, lib_audit
+# cc_binary(
+#     name = "hwclock",
+#     srcs = [
+#         "sys-utils/hwclock.c",
+#         "sys-utils/hwclock.h",
+# TODO: optional sources
+#     ],
+#     deps = [
+#         "//config",
+#         "//lib:common",
+#     ],
+# )
